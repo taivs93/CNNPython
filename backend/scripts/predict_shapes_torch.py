@@ -44,7 +44,7 @@ def preprocess(img_path,imgsz=64):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--img',required=True)
-    ap.add_argument('--model',default='backend/scripts/model1/shapes_cnn.pt')
+    ap.add_argument('--model',default='scripts/model1/shapes_cnn.pt')
     ap.add_argument('--device',default='cpu')
     args = ap.parse_args()
 

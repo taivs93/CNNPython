@@ -1,10 +1,12 @@
 # backend/app.py
 from flask import Flask, request, jsonify
-from utils.save_temp import save_temp_image
+from flask_cors import CORS
+from utils.save_temp import save_base64_png
 from utils.run_predict import predict_mnist, predict_shapes
 import os
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route('/predict/mnist', methods=['POST'])
 def predict_mnist_route():
@@ -12,7 +14,7 @@ def predict_mnist_route():
     image_b64 = data.get('image')
     if not image_b64:
         return jsonify({'error':'No image provided'}),400
-    tmp_path = save_temp_image(image_b64, 'mnist')
+    tmp_path = save_base64_png(image_b64)
     result = predict_mnist(tmp_path)
     os.remove(tmp_path)
     return jsonify(result)
@@ -23,7 +25,7 @@ def predict_shapes_route():
     image_b64 = data.get('image')
     if not image_b64:
         return jsonify({'error':'No image provided'}),400
-    tmp_path = save_temp_image(image_b64, 'shapes')
+    tmp_path = save_base64_png(image_b64)
     result = predict_shapes(tmp_path)
     os.remove(tmp_path)
     return jsonify(result)
