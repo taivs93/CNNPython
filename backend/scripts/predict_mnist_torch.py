@@ -39,7 +39,7 @@ def preprocess(img_path):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--img',required=True)
-    ap.add_argument('--model','--model',default='models/mnist_cnn.pt')
+    ap.add_argument('--model','--model',default='backend/scripts/models/mnist_cnn.pt')
     ap.add_argument('--device',default='cpu')
     args = ap.parse_args()
 
