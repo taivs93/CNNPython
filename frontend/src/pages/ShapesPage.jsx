@@ -20,11 +20,12 @@ const ShapesPage = () => {
     };
 
     return (
-        <div>
-            <h2>Draw a Shape (Circle/Rectangle)</h2>
+        <div className='card'>
+            <h2 className='title'>Draw a Shape (Circle/Rectangle)</h2>
+            <p className='muted'>Draw with a bold stroke and keep it centered. Closed outlines work best.</p>
             <CanvasDrawing onChange={setImageData} />
             <Toolbar onSubmit={handleSubmit} onClear={handleClear} />
-            {prediction && <div>Predicted Shape: {prediction.prediction}</div>}
+            {prediction && <div className='badge'>Predicted: {prediction.prediction}</div>}
         </div>
     );
 };

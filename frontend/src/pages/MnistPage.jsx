@@ -20,11 +20,12 @@ const MnistPage = () => {
     };
 
     return (
-        <div>
-            <h2>Draw a Digit (0-9)</h2>
+        <div className='card'>
+            <h2 className='title'>Draw a Digit (0–9)</h2>
+            <p className='muted'>Use your mouse to draw. Make the digit bold and centered for best accuracy.</p>
             <CanvasDrawing onChange={setImageData} />
             <Toolbar onSubmit={handleSubmit} onClear={handleClear} />
-            {prediction && <div>Predicted Digit: {prediction.prediction}</div>}
+            {prediction && <div className='badge'>Predicted: {prediction.prediction}</div>}
         </div>
     );
 };

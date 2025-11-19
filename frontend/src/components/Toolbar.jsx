@@ -3,9 +3,9 @@ import React from 'react';
 
 const Toolbar = ({ onSubmit, onClear }) => {
     return (
-        <div style={{margin:'10px 0'}}>
-            <button onClick={onSubmit}>Predict</button>
-            <button onClick={onClear} style={{marginLeft:'10px'}}>Clear</button>
+        <div className='toolbar'>
+            <button className='btn primary' onClick={onSubmit}>Predict</button>
+            <button className='btn' onClick={onClear}>Clear</button>
         </div>
     );
 };
