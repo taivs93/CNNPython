@@ -22,7 +22,7 @@ python shapes_torch.py --samples 6000 --imgsz 64 --epochs 8 --batch 128 --out mo
 
 ## 4) Predict a single shape image
 ```bash
-python predict_shapes_torch.py --img hinhtron.jpg --model models/shapes_cnn.pt
+python predict_shapes_torch.py --img de-hinh-vuong-to-mau.png --model models/shapes_cnn.pt
 ```
 
 Notes:

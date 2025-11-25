@@ -8,8 +8,8 @@ import argparse, os
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-import cv2
 import numpy as np
+from advanced_image_processing import AdvancedImageProcessor
 
 class MnistCNN(nn.Module):
     def __init__(self):
@@ -29,10 +29,8 @@ class MnistCNN(nn.Module):
         return x
 
 def preprocess(img_path):
-    img = cv2.imread(img_path, cv2.IMREAD_GRAYSCALE)
-    if img.mean()>127:
-        img = 255 - img
-    img = cv2.resize(img,(28,28)).astype('float32')/255.0
+    processor = AdvancedImageProcessor()
+    img = processor.preprocess_mnist_advanced(img_path)
     img = torch.from_numpy(img).unsqueeze(0).unsqueeze(0)
     return img
 
@@ -51,8 +49,12 @@ def main():
     x = preprocess(args.img).to(device)
     with torch.no_grad():
         logits = model(x)
-        pred = int(torch.softmax(logits,1)[0].argmax())
-    print(f'Predicted digit: {pred}')
+        confidence = torch.softmax(logits, 1)[0]
+        pred = int(confidence.argmax())
+        confidence_score = float(confidence[pred])
+    print(f'Predicted digit: {pred}, Confidence: {confidence_score:.4f}')
+    return pred, confidence_score
 
 if __name__=='__main__':
-    main()
+    pred, conf = main()
+    print(f'Result: {pred} ({conf*100:.2f}%)')

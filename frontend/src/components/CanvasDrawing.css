@@ -1,0 +1,30 @@
+.drawing-canvas {
+  border: 3px solid #ddd;
+  border-radius: 10px;
+  cursor: crosshair;
+  display: block;
+  background: white;
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  aspect-ratio: 1;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+.drawing-canvas:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  border-color: #667eea;
+}
+
+.drawing-canvas:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+}
+
+@media (max-width: 600px) {
+  .drawing-canvas {
+    max-width: 100%;
+  }
+}

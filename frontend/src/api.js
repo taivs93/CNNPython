@@ -1,14 +1,19 @@
-export async function predictMnist(base64) {
-const resp = await fetch('/api/predict-mnist', {
-method: 'POST', headers: {'Content-Type':'application/json'},
-body: JSON.stringify({ image: base64 })
-});
-return resp.json();
+export async function predictMnist(file) {
+  const formData = new FormData();
+  formData.append('file', file);
+  const resp = await fetch('http://localhost:5000/api/predict/mnist', {
+    method: 'POST',
+    body: formData
+  });
+  return resp.json();
 }
-export async function predictShapes(base64) {
-const resp = await fetch('/api/predict-shapes', {
-method: 'POST', headers: {'Content-Type':'application/json'},
-body: JSON.stringify({ image: base64 })
-});
-return resp.json();
+
+export async function predictShapes(file) {
+  const formData = new FormData();
+  formData.append('file', file);
+  const resp = await fetch('http://localhost:5000/api/predict/shapes', {
+    method: 'POST',
+    body: formData
+  });
+  return resp.json();
 }
