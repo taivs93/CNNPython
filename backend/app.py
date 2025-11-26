@@ -123,7 +123,8 @@ def predict_shapes(img_path):
         labels = ['circle', 'rectangle']
         processor = AdvancedImageProcessor()
         img = processor.preprocess_shapes_advanced(img_path, 64)
-        img = torch.from_numpy(img.astype(np.float32)).unsqueeze(0).to(device)
+        # ensure shape is (N, C, H, W) — add batch and channel dims
+        img = torch.from_numpy(img.astype(np.float32)).unsqueeze(0).unsqueeze(0).to(device)
         
         with torch.no_grad():
             logits = shapes_model(img)
